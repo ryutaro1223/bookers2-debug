@@ -21,6 +21,13 @@
                <%= @book.title %>
                <%= @book.body %>
                <% end %>
+
+               <td>フォロー数
+  		         <%= user.followings.count %>
+  		         </td>
+			         <td>フォロワー数
+	　　     <%= user.reverse_of_relationships.count %>
+	　　     </td>
             <!--いいね機能-->
           	     <td>
 						      <% if  @book.favorited_by?(current_user) %>
