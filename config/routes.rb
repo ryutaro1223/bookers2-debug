@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'homes#top'
   get 'home/about' => 'homes#about'
+  get '/search' => 'search#search'
   devise_for :users
   resources :users, only: [:show,:index,:edit,:update] do
   # ——————————————— ここから ———————————————
@@ -8,13 +9,13 @@ Rails.application.routes.draw do
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
   # ——————————— ここまでネストさせる ———————————
-  end 
+  end
 
   resources :books, only: [:edit, :create, :index, :show, :update, :destroy] do
    resource :favorite, only: [:create, :destroy]
    resources :book_comments, only: [:create, :destroy]
   end
-  
+
 
   post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
   delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
