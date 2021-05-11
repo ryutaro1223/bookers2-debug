@@ -5,10 +5,8 @@
       <%= render 'users/info', user: @book.user %>
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @books %>
-
-
-    </div>
-    <div class='col-md-8 offset-md-1'>
+      </div>
+      <div class='col-md-8 offset-md-1'>
 	             <h2>Book detail</h2>
  		           <table class='table'>
  		           <tr>
@@ -23,24 +21,17 @@
                <% end %>
 
                <td>フォロー数
-  		         <%= user.followings.count %>
+  		         <%= @user.followings.count %>
   		         </td>
 			         <td>フォロワー数
-	　　     <%= user.reverse_of_relationships.count %>
+	　　     <%= @user.reverse_of_relationships.count %>
 	　　     </td>
             <!--いいね機能-->
-          	     <td>
-						      <% if  @book.favorited_by?(current_user) %>
-							      <%= link_to  book_favorite_path(@book), method: :delete do %>
-							      <i class="fas fa-heart" ></i>
-							        <% end %>
-							        <%= @book.favorites.count %>
-						          <% else %>
-							        <%= link_to  book_favorite_path(@book), method: :post do %>
-							        <i class="fas fa-heart"></i>
-							        <% end %>
-				      		<%= @book.favorites.count %>
-				      		<% end %>
+            <%= form_with model:@book,remote: true do |f| %>
+            <%= render 'favorites', book: @book %>
+            <% end %>
+
+
 			　　	     </td>
 		　　　	<!-- コメント数表示 -->
 		　　　	     <td>コメント数<%= @book.book_comments.count %></td>
@@ -50,7 +41,11 @@
                   <% end %>
              </tr>
            </table>
-         <%= render 'books/comment', book: @book,book_comment: @book_comment%>
+           <!--コメント機能-->
+           <div class="comment">
+            <%= render 'books/comment', book: @book,book_comment: @book_comment%>
+           </div>
+        </div>
     </div>
   </div>
 </div>
