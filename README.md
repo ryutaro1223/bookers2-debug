@@ -26,7 +26,7 @@ ruby 5.2
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
-
+  comment service, search service,New post function
 * Deployment instructions
 
 * ...
