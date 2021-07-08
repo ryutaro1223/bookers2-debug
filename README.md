@@ -6,6 +6,7 @@ application up and running.
 Things you may want to cover:
 
 初README commit
+削除予定
 
 # Name bookers2-debug
 
